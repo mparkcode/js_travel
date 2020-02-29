@@ -6,14 +6,18 @@ const fetchCountryData = async name => {
 const input = document.querySelector('input');
 const dropdown = document.querySelector('#dropdown');
 input.addEventListener('input', async ()=>{
-  const countries = await fetchCountryData(event.target.value);
+  const countries = await fetchCountryData(event.target.value).catch((err) => {
+    dropdown.innerHTML = '';
+  });
+  if(!countries) return;
   dropdown.innerHTML = '';
   countries.forEach(country => {
-    const div = document.createElement('div');
-    div.innerHTML = `
-      <img src=${country.flag} />
-      <h1>${country.name}</h1>
+    const countyOption = document.createElement('a');
+    countyOption.classList.add('fitted', 'item');
+    countyOption.innerHTML = `
+      <img class="ui middle aligned mini image" src="${country.flag}" />
+      <span>${country.name}</span>
     `;
-    dropdown.appendChild(div)
+    dropdown.appendChild(countyOption)
   })
 })
