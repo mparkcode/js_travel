@@ -6,8 +6,8 @@ const fetchCountryData = async name => {
 const input = document.querySelector('input');
 const dropdown = document.querySelector('#dropdown');
 input.addEventListener('input', async ()=>{
-  dropdown.innerHTML = '';
   const countries = await fetchCountryData(event.target.value);
+  dropdown.innerHTML = '';
   countries.forEach(country => {
     const div = document.createElement('div');
     div.innerHTML = `
