@@ -4,11 +4,12 @@ const fetchCountryData = async name => {
 }
 
 const fetchWeatherData = async country => {
+
   const response = await axios.get('http://api.openweathermap.org/data/2.5/weather', {
     params : {
       lat: country.latlng[0],
       lon: country.latlng[1],
-      appid: 'API Key'
+      appid: key
     }
 });
   return response.data;
