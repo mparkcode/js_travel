@@ -1,3 +1,8 @@
-img{
-  width: 100px;
+.flag-img{
+  margin-right: 10px;
+  display: inline-block;
+}
+
+.height{
+  max-height: 75px;
 }
