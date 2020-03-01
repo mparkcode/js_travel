@@ -12,12 +12,23 @@ input.addEventListener('input', async ()=>{
   if(!countries) return;
   dropdown.innerHTML = '';
   countries.forEach(country => {
-    const countyOption = document.createElement('a');
-    countyOption.classList.add('fitted', 'item');
-    countyOption.innerHTML = `
+    const countryOption = document.createElement('a');
+    countryOption.classList.add('horizontally', 'fitted', 'item');
+    countryOption.innerHTML = `
+    <div class="flag-img">
       <img class="ui middle aligned mini image" src="${country.flag}" />
-      <span>${country.name}</span>
+    </div>
+      ${country.name}
     `;
-    dropdown.appendChild(countyOption)
+    countryOption.addEventListener('click', ()=>{
+      dropdown.innerHTML = '';
+      input.value = country.name;
+      onCountrySelect(country)
+    })
+    dropdown.appendChild(countryOption)
   })
 })
+
+const onCountrySelect = country => {
+
+}
