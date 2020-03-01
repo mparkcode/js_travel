@@ -26,6 +26,8 @@ const fetchPhotoData = async country => {
 
 const input = document.querySelector('input');
 const dropdown = document.querySelector('#dropdown');
+const grid = document.querySelector('.grid')
+
 input.addEventListener('input', async ()=>{
   const countries = await fetchCountryData(event.target.value).catch((err) => {
     dropdown.innerHTML = '';
@@ -44,6 +46,7 @@ input.addEventListener('input', async ()=>{
     countryOption.addEventListener('click', ()=>{
       dropdown.innerHTML = '';
       input.value = country.name;
+      grid.innerHTML = '';
       console.log(country)
       onCountrySelect(country)
     })
@@ -56,4 +59,12 @@ const onCountrySelect = async country => {
   const photoData = fetchPhotoData(country);
   const results = await Promise.all([weatherData, photoData]);
   console.log(results);
+  results[1].hits.forEach(image => {
+    const imageDiv = document.createElement('div');
+    imageDiv.classList.add('four', 'wide', 'column')
+    imageDiv.innerHTML = `
+      <img class="country-image" src=${image.webformatURL} />
+    `;
+    grid.appendChild(imageDiv);
+  })
 }
