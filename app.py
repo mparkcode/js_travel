@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template('index.html', weather_key=os.getenv('OPENWEATHER_KEY'))
+    return render_template('index.html', weather_key=os.getenv('OPENWEATHER_KEY'), photo_key=os.getenv('PIXABAY_KEY'))
 
 
 
